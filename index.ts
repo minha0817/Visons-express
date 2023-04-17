@@ -49,31 +49,31 @@ const connection = mysql.createConnection({
   database: "VisonZ_Practice",
 });
 
-// const sql = mysql.format("SELECT * FROM user", []);
+const sql = mysql.format("SELECT * FROM user_address", []);
 
-const values = [];
-for (let i = 0; i < 50; i++) {
-  values.push([
-    faker.address.streetAddress(),
-    faker.address.city(),
-    faker.address.country(),
-    i+1
-  ]);
-}
+// const values = [];
+// for (let i = 0; i < 50; i++) {
+//   values.push([
+//     faker.address.streetAddress(),
+//     faker.address.city(),
+//     faker.address.country(),
+//     i+1
+//   ]);
+// }
 
-const sql = mysql.format(
-  "INSERT INTO user_address (street_address, city, country, user_id) VALUES ?",
-  [values]
-);
+// const sql = mysql.format(
+//   "INSERT INTO user_address (street_address, city, country, user_id) VALUES ?",
+//   [values]
+// );
 
 console.log('result of sql', sql);
 
 connection.query(sql, (err, results) => {
   if (err) throw err;
     console.log('results', results);
-//   results.forEach((result: any) => {
-//     console.log("result.username", result.username);
-//   });
+  results.forEach((result: any) => {
+    console.log("result.username", result.country);
+  });
 
   connection.end();
 });
